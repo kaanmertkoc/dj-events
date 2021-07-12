@@ -1,6 +1,6 @@
-import Layout from '@/components/Layout';
-import { API_URL } from '@/config/index';
-import EventItem from '@/components/EventItem';
+import Layout from "@/components/Layout";
+import { API_URL } from "@/config/index";
+import EventItem from "@/components/EventItem";
 
 export default function EventsPage({ events }) {
   return (
@@ -16,7 +16,6 @@ export default function EventsPage({ events }) {
 export async function getStaticProps() {
   const res = await fetch(`${API_URL}/articles?_sort=date:ASC`);
   const events = await res.json();
-  console.log(events);
 
   return {
     props: { events },

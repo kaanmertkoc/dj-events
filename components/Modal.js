@@ -8,6 +8,11 @@ export default function Modal({ show, onClose, children, title }) {
 
   useEffect(() => setIsBrowser(true), []);
 
+  const handleClose = e => {
+    e.preventDefault();
+    onClose();
+  };
+
   const modalContent = show ? (
     <div className={styles.overlay}>
       <div className={styles.modal}>
@@ -21,5 +26,13 @@ export default function Modal({ show, onClose, children, title }) {
       </div>
     </div>
   ) : null;
-  return <div></div>;
+
+  if (isBrowser) {
+    return ReactDOM.createPortal(
+      modalContent,
+      document.getElementById("modal-root")
+    );
+  } else {
+    return null;
+  }
 }

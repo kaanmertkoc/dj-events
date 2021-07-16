@@ -171,9 +171,10 @@ export default function EditEventPage({ evt }) {
   );
 }
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id }, req }) {
   const res = await fetch(`${API_URL}/articles/${id}`);
   const evt = await res.json();
+
   return {
     props: {
       evt,
